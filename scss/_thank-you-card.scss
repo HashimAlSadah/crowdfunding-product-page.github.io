@@ -1,0 +1,47 @@
+@use "./var";
+
+.thank-you-card{
+    position: fixed;
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-1000%, -50%);
+    padding: 2em;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 6px;
+    background-color: white;
+    z-index: 30;
+    transition: transform 0.4s ease 100ms;
+}
+
+.thank-you-card.active{
+    transform: translate(-50%, -50%);
+}
+
+.thank-you__image{
+    width: 100px;
+    margin: 0 auto 2.5em;
+}
+
+.thank-you-card p{
+    color: var.$dark-gray;
+    margin-top: 1em;
+    line-height: 1.8;
+}
+
+.thank-you-card button{
+    display: block;
+    width: 100%;
+    max-width: 100px;
+    margin: 2em auto 0;
+    padding: 1em 0;
+    background-color: var.$moderate-cyan;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}

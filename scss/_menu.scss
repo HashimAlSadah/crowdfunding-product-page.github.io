@@ -1,0 +1,71 @@
+@use "./var";
+@use "./mixin";
+
+.header .menu{
+    position: absolute;
+    top: 4em;
+    left: 0;
+    display: block;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 0px rgba(black, 0.3);
+    overflow: hidden;
+    transform: scale(1, 0);
+    transition: transform 0.5s ease 50ms;
+    z-index: 100;
+}
+
+.header .menu.active{
+    transform: scale(1, 1);
+}
+
+.header .menu li + li{
+    border-top: 1px solid rgba(lightgray, 0.9);
+}
+
+.header .menu a{
+    display: block;
+    color: black;
+    font-weight: 500;
+    padding: 1.25em 1.5em;
+}
+
+@include mixin.screenMinWidStyle(var.$first-break-point){
+    .header .menu{
+        position: static;
+        display: flex;
+        align-items: center;
+        gap: 2em;
+        background-color: transparent;
+        box-shadow: none;
+        border-radius: unset;
+        transform: scale(1, 1);
+    }
+
+    .header .menu li + li{
+        border-top: none;
+    }
+
+    .header .menu a{
+        position: relative;
+        color: white;
+        padding: unset;
+        
+        &::after{
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            left: 0;
+            bottom: 0;
+            background-color: white;
+            transition: width 0.5s ease;
+        }
+
+        &:hover::after{
+            width: 100%;
+        }
+    }
+
+}

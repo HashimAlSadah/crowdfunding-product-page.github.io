@@ -1,0 +1,328 @@
+@use"./var";
+@use"./mixin";
+
+body::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0em;
+    min-height: 100vh;
+    background-color: rgba(black, 0.5);
+    z-index: 10;
+    transform: translateY(-100%);
+    transition: transform 0.7s ease;
+}
+
+body.active::after{
+    transform: translateY(0);
+}
+
+.module{
+    position: fixed;
+    width: 90%;
+    max-width: 800px;
+    top: 6em;
+    bottom: 2em;
+    left: 50%;
+    padding: 1.5em;
+    background-color: white;
+    border-radius: 6px;
+    z-index: 20;
+    transform: translateX(-1000%);
+    overflow-y: scroll;
+    transition: transform 0.7s ease 10ms;
+}
+
+.module.active{
+    transform: translateX(-50%);
+}
+
+.module p{
+    color: var.$dark-gray;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.module__header{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.0em;
+}
+
+.module .close-btn{
+    width: 15px;
+    height: 15px;
+}
+
+.module h2{
+    font-size: 1.2rem;
+}
+
+.module > p{
+    margin-bottom: 1.5em;
+}
+
+.module-donation__type{
+    padding: 1.5em 1em;
+    border: 1px solid rgba(var.$dark-gray, 0.5);
+    border-radius: 6px;
+}
+
+.module-donation__type + .module-donation__type{
+    margin-top: 1.5em;
+}
+
+.module-donation__type:last-child{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.module-donation__main-text{
+    margin-top: 1em;
+}
+
+.radio-container{
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+}
+
+.radio-container input{
+    position: relative;
+    appearance: none;
+    border: 1.0px solid rgba(var.$dark-gray, 0.5);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.radio-container input::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: var.$moderate-cyan;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+}
+
+.radio-container input.active::before{
+    opacity: 1;
+}
+
+.radio-container label{
+    font-weight: 500;
+}
+
+.radio-container p{
+    color: var.$moderate-cyan;
+    margin-top: 0.25em;
+}
+
+.numbers-left--module{
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+}
+
+.numbers-left--module.desktop{
+    display: none;
+}
+
+.numbers-left--module.mobile{
+    margin-top: 1em;
+}
+
+.numbers-left--module h3{
+    font-size: 1.5rem;
+}
+
+.numbers-left--module span{
+    color: var.$dark-gray;
+}
+
+.module hr{
+    display: none;
+    margin: 1em -1.0em 2em;
+    border: 1.5px solid rgba(var.$dark-gray, 0.5);
+    border-bottom: none;
+}
+
+.module hr.active{
+    display: block;
+}
+
+.insert-donation{
+    display: none;
+}
+
+.insert-donation.active{
+    display: block;
+}
+
+.insert-donation p{
+    text-align: center;
+    margin-bottom: 1.0em;
+}
+
+.insert-donation form{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.input-container{
+    position: relative;
+    // flex: 1 1 50%;
+    width: 100px;
+    min-height: 45px;
+    border: 1px solid rgba(var.$dark-gray, 0.5);
+    border-radius: 30px;
+}
+
+.input-container::before{
+    content: "$";
+    position: absolute;
+    width: fit-content;
+    left: 25%;
+    top: 50%;
+    color: var.$dark-gray;
+    font-size: 0.9rem;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.insert-donation input{
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    left: 45%;
+    padding-right: 8px;
+    border: none;
+    outline: none;
+    font-weight: 700;
+}
+
+.insert-donation button,
+.insert-donation input{
+    display: block;
+    border-radius: 30px;
+}
+
+.insert-donation button{
+    // flex: 1 1 50%;
+    width: 100px;
+    border: none;
+    background-color: var.$moderate-cyan;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.insert-donation button.no-reward{
+    width: 100px;
+    min-height: 45px;
+}
+
+.module .error-message{
+    display: none;
+    color: rgb(245, 44, 44);
+    margin-top: 0.5em;
+}
+
+.module .error-message.active{
+    display: block;
+}
+
+@include mixin.screenMinWidStyle(var.$first-break-point){
+    .module__header{
+        display: block;
+    }
+
+    .close-btn{
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+    .radio-info{
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+    }
+
+    .radio-container p{
+        margin-top: unset;
+        font-size: 1em;
+    }
+
+    .radio-container label{
+        transition: color 0.3s ease;
+        &:hover{
+            color: var.$moderate-cyan;
+        }
+    }
+
+    .donation-info{
+        display: flex;
+    }
+
+    .numbers-left--module.desktop{
+        display: flex;
+        margin-left: auto;
+    }
+
+    .numbers-left--module.mobile{
+        display: none;
+    }
+
+    .module-donation__main-text{
+        margin-left: 32px;
+    }
+
+    .module hr{
+        margin-top: 2em;
+        margin-bottom: 1em;
+    }
+
+    .insert-donation.active{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .insert-donation p{
+        text-align: left;
+        margin-bottom: 0.0em;
+    }
+
+    .insert-donation button{
+        cursor: pointer;
+        transition: background-color 0.4s ease;
+        &:hover{
+            background-color: var.$dark-cyan;
+        }
+    }
+
+    .insert-donation button.no-reward{
+        margin-left: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

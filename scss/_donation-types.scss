@@ -1,0 +1,117 @@
+@use "./var";
+@use "./mixin";
+
+.main .about{
+    padding: 2em 1.25em;
+}
+
+.about h2{
+    font-size: 1.2rem;
+}
+
+.about__text{
+    margin-bottom: 2em;
+}
+
+.about__text p{
+    margin-top: 1.5em;
+    line-height: 1.8;
+    color: var.$dark-gray;
+}
+
+.donation-type{
+    border: 1px solid rgba(var.$dark-gray, 0.5);
+    border-radius: 5px;
+    padding: 1.25em;
+}
+
+.donation-type + .donation-type{
+    margin-top: 1.25em;
+}
+
+.donation-type h3{
+    font-size: 1.0rem;
+}
+
+.donation-type small{
+    display: block;
+    font-size: 1rem;
+    color: var.$moderate-cyan;
+    margin-top: 0.25em;
+}
+
+.donation-type p{
+    margin: 1.5em 0;
+    font-size: 0.90rem;
+    color: var.$dark-gray;
+    line-height: 1.8;
+}
+
+.donation-type .numbers-left{
+    display: flex;
+    gap: 0.45em;
+    margin-bottom: 1.5em;
+}
+
+.donation-type h2{
+    font-size: 1.8rem;
+}
+
+.donation-type span{
+    align-self: center;
+    color: rgba(var.$dark-gray, 0.8);
+}
+
+.donation-type button{
+    border: none;
+    background-color: var.$moderate-cyan;
+    padding: 1em 2em;
+    border-radius: 30px;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.donation-type button:hover{
+    background-color: var.$dark-cyan;
+}
+
+.donation-type:last-child{
+    opacity: 0.5;
+}
+
+.donation-type:last-child button{
+    background-color: rgba(var.$dark-gray, 0.7);
+    cursor: default;
+}
+
+@include mixin.screenMinWidStyle(var.$first-break-point){
+    .main .about{
+        padding: 2em 2em;
+    }
+
+    .donation-type__header{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .donation-type small{
+        margin-top: 0;
+    }
+
+    .donation-type .row{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .donation-type .numbers-left{
+        margin-bottom: 0;
+    }
+}
+
+
+
